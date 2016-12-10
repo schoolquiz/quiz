@@ -1,2 +1,2 @@
-# quiz
-Schoolquiz
+# Schoolquiz
+
