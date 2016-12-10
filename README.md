@@ -1,2 +1,3 @@
 # Schoolquiz
 
+Quiz for studying
