@@ -1,12 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head>
+        <title>SchoolQuiz - Categories</title>
+            <ui:include src="/WEB-INF/include.xhtml"/>
+    </head>
+    <f:view>
+
+        <div class="row row-with-padding">
+            <h:outputText value="No categories found" rendered="#{empty categoryBean.categories}"/>
+            <ui:repeat value="#{categoryBean.categories}" var="category">
+                <div class="col-xs-6 col-md-3 col">
+                    <a href="#{category.name}" class="hoverlink" style="display: block">
+                        <div class="thumbnail">
+                            <img class="thumbImage" src="https://www.ubertheme.com/wp-content/uploads/sites/3/edd/2014/06/jm-category.png" alt="category image"/>
+                            <div class="caption">
+                                <h3>#{category.name}</h3>
+                                <p>#{category.questions.size()}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </ui:repeat>
+        </div>
+    </f:view>
 </html>
 

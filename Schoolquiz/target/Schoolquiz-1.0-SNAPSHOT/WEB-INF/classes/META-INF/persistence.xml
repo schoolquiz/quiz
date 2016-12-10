@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="SchoolQuizPU" transaction-type="JTA">
+        <jta-data-source>SchoolQuizResource</jta-data-source>
+        <class>model.Answer</class>
+        <class>model.Category</class>
+        <class>model.Question</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
