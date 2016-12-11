@@ -24,6 +24,9 @@ public class Category {
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Question> questions;
 
+    @NotNull
+    private String imageURL;
+
     public Category() {
     }
 
@@ -49,5 +52,13 @@ public class Category {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

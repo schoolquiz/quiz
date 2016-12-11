@@ -1,6 +1,7 @@
 package dao;
 
 import model.Category;
+import model.Question;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,24 +14,24 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 /**
- * Created by Eric on 10/12/2016.
+ * Created by Eric on 11/12/2016.
  */
 @Named
-public class CategoryDaoJPA implements CategoryDao {
+public class QuestionJPA implements QuestionDao {
 
     @PersistenceContext(name = "SchoolQuizPU")
     private EntityManager entityManager;
 
     @Override
-    public Category create(Category category) throws Exception{
-        String errorMessage = "Could not add category to the database";
+    public Question create(Question question) throws Exception{
+        String errorMessage = "Could not add question to the database";
         try {
-            findByName(category.getName());
-            throw new IllegalArgumentException("Category already exists");
+            findByQuestion(question.getQuestion());
+            throw new IllegalArgumentException("Question already exists");
         } catch(NoResultException ex) {
             try {
-                entityManager.persist(category);
-                return entityManager.find(Category.class, category.getId());
+                entityManager.persist(question);
+                return entityManager.find(Question.class, question.getId());
             } catch(Exception exception) {
                 throw new Exception(errorMessage, exception);
             }
@@ -42,9 +43,9 @@ public class CategoryDaoJPA implements CategoryDao {
     }
 
     @Override
-    public Category findById(Long id) throws Exception {
+    public Question findById(Long id) throws Exception {
         try {
-            return entityManager.find(Category.class, id);
+            return entityManager.find(Question.class, id);
         } catch (Exception ex) {
             throw new Exception("Could not find category in database", ex);
         }
@@ -52,41 +53,40 @@ public class CategoryDaoJPA implements CategoryDao {
 
 
     @Override
-    public Category findByName(String name) throws Exception {
+    public Question findByQuestion(String question) throws Exception {
         try {
-            return (Category) entityManager.createNamedQuery("findCategoryByName").setParameter("name", name).getSingleResult();
+            return (Question) entityManager.createNamedQuery("findQuestionByQuestion").setParameter("question", question).getSingleResult();
         } catch(NoResultException ex) {
-            throw new NoResultException("Category " + name + "does not exist");
+            throw new NoResultException("Question " + question + "does not exist");
         }
-
     }
 
     @Override
-    public List<Category> findAllCategories() throws Exception {
+    public List<Question> findAllQuestions() throws Exception {
         try {
             CriteriaBuilder qb = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Category> c = qb.createQuery(Category.class);
-            c.from(Category.class);
+            CriteriaQuery<Question> c = qb.createQuery(Question.class);
+            c.from(Question.class);
 
-            TypedQuery<Category> query = entityManager.createQuery(c);
+            TypedQuery<Question> query = entityManager.createQuery(c);
             return query.getResultList();
         } catch (Exception ex) {
-            throw new Exception("Could not find categories in database", ex);
+            throw new Exception("Could not find questions in database", ex);
         }
     }
 
     @Override
     public void delete(Long id) throws Exception {
         try {
-            Category category = findById(id);
-            if (category == null) {
-                throw new IllegalArgumentException("Category does not exist");
+            Question question = findById(id);
+            if (question == null) {
+                throw new IllegalArgumentException("Question does not exist");
             }
-            entityManager.remove(category);
+            entityManager.remove(question);
         } catch (IllegalArgumentException ex) {
             throw new Exception(ex.getMessage(), ex);
         } catch (Exception ex) {
-            throw new Exception("Could not delete category from database", ex);
+            throw new Exception("Could not delete question from database", ex);
         }
     }
 }

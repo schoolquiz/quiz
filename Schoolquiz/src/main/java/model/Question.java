@@ -8,6 +8,9 @@ import java.util.List;
  * Created by Eric on 10/12/2016.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "findQuestionByQuestion", query = "SELECT q FROM Question q WHERE q.question = :question")
+})
 public class Question {
 
     @Id
@@ -22,6 +25,9 @@ public class Question {
 
     @ManyToOne
     private Category category;
+
+    @NotNull
+    private String imageURL;
 
     public Question() {
     }
@@ -56,5 +62,13 @@ public class Question {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

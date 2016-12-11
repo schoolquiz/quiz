@@ -1,6 +1,10 @@
+.btn-center {
+    margin: 0 auto;
+}
+
 .col {
     margin-bottom: 20px;
-    height: 300px;
+    height: 240px;
 }
 
 .errormessage {
@@ -35,16 +39,17 @@
     color: green;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .thumbnail {
     margin-bottom: 0px; !important;
-    max-height: 300px;
+    max-height: 400px;
 }
 
 .thumbImage {
-    max-height: 170px; !important;
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-top: 7px;
+    max-height: 100px; !important;
 }
 
 .thumbHeading {
@@ -74,6 +79,24 @@
     margin-right: auto;
     margin-bottom: 20px;
 }
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table > tbody > tr > td > img {
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius: 10px;
+}
+
+img {
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius: 10px;
+}
+
+
 
 
 

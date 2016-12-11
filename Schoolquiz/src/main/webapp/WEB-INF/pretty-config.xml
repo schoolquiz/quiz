@@ -1,0 +1,26 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+    <url-mapping id="index">
+        <pattern value="/category/#{categoryname}" />
+        <view-id value="/index.xhtml?categoryname=#{categoryname}" />
+    </url-mapping>
+
+    <url-mapping id="editCategory">
+        <pattern value="/edit/category/#{categoryname}" />
+        <view-id value="/editcategory.xhtml?categoryname=#{categoryname}" />
+    </url-mapping>
+
+    <url-mapping id="editQuestion">
+        <pattern value="/edit/category/#{categoryname}/question/#{questionid}" />
+        <view-id value="/editquestion.xhtml?categoryname=#{categoryname}/questionid=#{questionid}" />
+    </url-mapping>
+
+    <url-mapping id="addCategory">
+        <pattern value="/add" />
+        <view-id value="/addCategory.xhtml" />
+    </url-mapping>
+
+</pretty-config>
