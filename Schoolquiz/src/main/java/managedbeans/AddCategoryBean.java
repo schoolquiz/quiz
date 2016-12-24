@@ -5,8 +5,10 @@ import service.CategoryService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by Eric on 11/12/2016.
@@ -44,7 +46,7 @@ public class AddCategoryBean {
 
     public void addCategory() {
         try {
-            categoryService.addCategory(category);
+            category = categoryService.addCategory(category);
             String contextpath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
             FacesContext.getCurrentInstance().getExternalContext().redirect(contextpath);
         } catch (Exception ex) {

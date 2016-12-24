@@ -1,10 +1,8 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Created by Eric on 10/12/2016.
@@ -19,10 +17,16 @@ public class Answer {
     @NotNull
     private String answer;
 
+    @XmlTransient
     @ManyToOne
     private Question question;
 
     public Answer() {
+    }
+
+    public Answer(String answer, Question question) {
+        this.answer = answer;
+        this.question = question;
     }
 
     public Answer(String answer) {

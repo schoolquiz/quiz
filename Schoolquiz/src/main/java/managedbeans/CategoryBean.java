@@ -4,18 +4,18 @@ import model.Category;
 import service.CategoryService;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Eric on 10/12/2016.
  */
-@Named
+@ManagedBean
 public class CategoryBean implements Serializable {
 
     @Inject
@@ -24,9 +24,6 @@ public class CategoryBean implements Serializable {
     private List<Category> categories;
 
     private String errorMessage;
-
-    public String categoryId;
-
 
     @PostConstruct
     public void init() {
@@ -51,9 +48,14 @@ public class CategoryBean implements Serializable {
             System.out.println("About to delete: " + value);
             Long categoryId = Long.parseLong(value);
             categoryService.deleteCategory(categoryId);
+            refresh();
         } catch (Exception ex) {
             System.out.println("Invalid param");
         }
+    }
+
+    private void refresh() throws Exception {
+        categories = categoryService.getAllCategories();
     }
 
     public void setErrorMessage(String errorMessage) {

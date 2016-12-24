@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <head>
     <title>SchoolQuiz - Edit Category</title>
     <ui:include src="/WEB-INF/include.xhtml"/>
@@ -38,6 +39,28 @@
         </ui:repeat>
         </tbody>
     </table>
+
+    <f:view>
+        <div class="center-block" style="width:40%">
+            <h:form class="form-signin" method="POST">
+                <h3 class="form-signin-heading">Add a question</h3>
+                <div class="form-group">
+                    <h:message for="question" style="color:red" />
+                    <h:inputText class="form-control" value="#{editCategoryBean.question.question}" id="question" p:placeholder="The question" required="true" autofocus="true" requiredMessage="Question is required" />
+                    <br/>
+
+                    <h:message for="answer" style="color:red" />
+                    <h:inputText class="form-control" value="#{editCategoryBean.answers[0]}" id="answer" p:placeholder="Enter an answer" required="true" autofocus="true" requiredMessage="An answer is required" />
+                    <br/>
+
+                    <h:message for="imageURL" style="color:red" />
+                    <h:inputText class="form-control" value="#{editCategoryBean.question.imageURL}" id="imageURL" p:placeholder="Enter the url of the image" required="true" autofocus="true" requiredMessage="An URL is required" />
+                    <br/>
+                </div>
+                <h:commandButton styleClass="btn btn-lg btn-primary btn-block" action="#{editCategoryBean.addQuestion()}" value="Add category"/>
+            </h:form>
+        </div>
+    </f:view>
 </f:view>
 
 <!-- Modal -->

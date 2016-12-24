@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +22,10 @@ public class Question {
     @NotNull
     private String question;
 
-    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Answer> answers;
 
+    @XmlTransient
     @ManyToOne
     private Category category;
 
@@ -30,6 +33,7 @@ public class Question {
     private String imageURL;
 
     public Question() {
+        answers = new ArrayList<>();
     }
 
     public Long getId() {

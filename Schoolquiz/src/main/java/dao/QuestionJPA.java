@@ -33,6 +33,7 @@ public class QuestionJPA implements QuestionDao {
                 entityManager.persist(question);
                 return entityManager.find(Question.class, question.getId());
             } catch(Exception exception) {
+                exception.printStackTrace();
                 throw new Exception(errorMessage, exception);
             }
         } catch(IllegalArgumentException ex) {
